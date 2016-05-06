@@ -14,3 +14,4 @@
 Route::get('/', function () {
     return view('pages.index');
 });
+Route::get('/admin', 'AdminController@index');
