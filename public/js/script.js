@@ -36,6 +36,7 @@ events: {
       this.companyName = this.oldCompanyName;
       this.companyFeatures = this.oldCompanyFeatures;
       this.bgcolor = this.oldBGcolor;
+      document.getElementById('imgConstr').src=this.imgCurrent;
     }
 
 

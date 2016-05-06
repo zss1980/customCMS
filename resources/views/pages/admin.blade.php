@@ -36,7 +36,7 @@ header .intro-text .skills {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" v-bind:src="imgCurrent" alt="">
+                    <img class="img-responsive" id="imgConstr" v-bind:src="imgCurrent" alt="">
                     <div class="intro-text">
                         <span class="name">@{{companyName}}</span>
                         <hr class="star-light">
@@ -53,6 +53,64 @@ header .intro-text .skills {
 <input class="form-control" v-model="companyFeatures">
 <br>
 <input class="jscolor" v-model="bgcolor">
-<input type="file" id="newImg">
-<button type="button" class="btn btn-primary">Preview</button> 
+{!!Form::open([
+                        'id'=>'upload',
+                        'method'=>'POST',
+                        'files' => true,
+                        'class' => 'ajax',
+                        'route'=>['admin.uploadImg']
+                        ])!!}
+<input type="file" id="newImg" name='imag'>
+{!!Form::submit('Preview', ['class'=>'btn btn-primary'])!!}
+{!!Form::close()!!}
+@stop
+
+@section('scripts')
+<script>
+$(function() {
+	$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+        $('form.ajax').on('submit', function(event){
+            event.preventDefault();
+            var filedata = new FormData();
+            var f1 = $(this).find('input[type=file]')[0].files[0];
+            filedata.append('imag', f1);
+            filedata.append('caption', $(this).find('input[name="caption"]').val());
+            filedata.append('info', $(this).find('textarea[name="info"]').val());
+            filedata.append('id', $(this).find('input[name="id"]').val());
+
+            
+
+            if (f1) {
+            var imagTarget = "imgConstr";
+            };
+
+            $.ajax({
+                type     : "POST",
+                url      : $(this).attr('action'),
+                data     : filedata,
+                cache    : false,
+                contentType: false,
+                processData: false,
+                success  : function(data) {
+                
+                  if (imagTarget)
+                  {
+                    document.getElementById(imagTarget).src = "img/"+data[1];
+                  }
+
+                    //document.getElementById("ajax-response").innerHTML = data[0];
+
+                    
+                }
+            })
+
+            return false;
+
+        });
+});
+</script>
 @stop

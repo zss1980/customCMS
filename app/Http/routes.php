@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('pages.index');
 });
-Route::get('/admin', 'AdminController@index');
+Route::get('admin', 'AdminController@index');
+Route::post('admin/uploadImg', 'AdminController@uploadImg')->name('admin.uploadImg');
