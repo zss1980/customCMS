@@ -92,7 +92,7 @@
             @yield('header')
           </div>
           <hr>
-          <button type="button" class="btn btn-success">Apply changes</button> <button type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
+          <button type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button> <button type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
 
           <h2 class="sub-header">Edit section</h2>
           <div >

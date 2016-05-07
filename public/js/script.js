@@ -13,6 +13,12 @@ window.addEventListener('load', function () {
     oldBGcolor: '',
     imgPrefix: 'img/',
     imgCurrent: 'img/profile.png',
+    messageToServer:{
+      companyName: '',
+      companyFeatures: '',
+      bgColor: '',
+      img: ''
+    },
   },
 
 ready: function(){
@@ -37,7 +43,16 @@ events: {
       this.companyFeatures = this.oldCompanyFeatures;
       this.bgcolor = this.oldBGcolor;
       document.getElementById('imgConstr').src=this.imgCurrent;
+    },
+
+    applyChanges: function(){
+      this.messageToServer.companyName = this.companyName;
+      this.messageToServer.companyFeatures = this.companyFeatures;
+      this.messageToServer.bgColor = this.bgcolor;
+      this.messageToServer.img = document.getElementById('imgConstr').src;
+      
     }
+
 
 
 

@@ -51,6 +51,7 @@ header .intro-text .skills {
 @section('edit')
 <input class="form-control" v-model="companyName"><br>
 <input class="form-control" v-model="companyFeatures">
+<pre> @{{$data | json}}</pre>
 <br>
 <input class="jscolor" v-model="bgcolor">
 {!!Form::open([

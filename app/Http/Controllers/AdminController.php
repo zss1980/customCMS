@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Image;
 
 class AdminController extends Controller
 {
@@ -31,8 +32,12 @@ class AdminController extends Controller
                 $file = $request->file('imag');
                 $rules = array('imag' => 'required',);
                 $filename = time() . '.' . $file->getClientOriginalExtension();
+                $filePath=base_path() . '/public/img/' . $filename;
         
                 $file->move(base_path() . '/public/img/', $filename);
+                $img= Image::make($filePath);
+                $img->resize('300', '300');
+                $img->save($filePath);
                 //image to DB
                 /*$image = $mpobject->imageEntry()->where('record_id', $mpobject->id)
                                                 ->where('record_type', $mpobject->record_type)
