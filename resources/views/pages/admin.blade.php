@@ -30,6 +30,9 @@ header .intro-text .skills {
     font-size: 1.25em;
     font-weight: 300;
 }
+input[type=file].form-control {
+    height: auto;
+}
 </style>
 
 <header>
@@ -49,11 +52,9 @@ header .intro-text .skills {
 @stop
 
 @section('edit')
-<input class="form-control" v-model="companyName"><br>
-<input class="form-control" v-model="companyFeatures">
-<pre> @{{$data | json}}</pre>
-<br>
-<input class="jscolor" v-model="bgcolor">
+<LABEL>Company name: </LABEL><input class="form-control" v-model="companyName"><br>
+<label>Company features: </label><input class="form-control" v-model="companyFeatures">
+<label>Background colour: </label><input class="form-control jscolor" v-model="bgcolor">
 {!!Form::open([
                         'id'=>'upload',
                         'method'=>'POST',
@@ -61,7 +62,7 @@ header .intro-text .skills {
                         'class' => 'ajax',
                         'route'=>['admin.uploadImg']
                         ])!!}
-<input type="file" id="newImg" name='imag'>
+<label>Image: </label><input type="file" class="form-control" id="newImg" name='imag'>
 {!!Form::submit('Preview', ['class'=>'btn btn-primary'])!!}
 {!!Form::close()!!}
 @stop

@@ -15,7 +15,6 @@ class CreateViewElementsTable extends Migration
         Schema::create('view_elements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('elementName');
-            $table->string('parentName');
             $table->timestamps();
         });
     }

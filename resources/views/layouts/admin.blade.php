@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
@@ -27,6 +27,7 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jscolor.js"></script>
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Image;
+use App\ViewElement;
+use App\VEproperty;
 
 class AdminController extends Controller
 {
@@ -15,18 +17,6 @@ class AdminController extends Controller
 
     public function uploadImg(Request $request){
 
-        /*$mpobject = Mpobject::find($request->input('id'));
-        $mpobject_caption=$mpobject->entries()->where('record_id', $mpobject->id)
-                                                                ->where('element_id', 'caption')
-                                                                ->first();
-            $mpobject_caption->text = $request->input('caption');
-            $mpobject_caption->save();
-        $mpobject_info=$mpobject->entries()->where('record_id', $mpobject->id)
-                                                                ->where('element_id', 'info')
-                                                                ->first();
-            $mpobject_info->text = $request->input('info');
-            $mpobject_info->save();*/
-            
         if ($request->hasFile('imag'))
             { 
                 $file = $request->file('imag');
@@ -38,15 +28,9 @@ class AdminController extends Controller
                 $img= Image::make($filePath);
                 $img->resize('300', '300');
                 $img->save($filePath);
-                //image to DB
-                /*$image = $mpobject->imageEntry()->where('record_id', $mpobject->id)
-                                                ->where('record_type', $mpobject->record_type)
-                                                ->first();
-                 $image->filename=$filename;
-                 $image->save();*/
+                 
            }
-        $data1=-1;
-            //$data1 = $request->hasFile('imag');
+        
             $response=array();
             $response[0] = "All records are updated! Have a good Day!";
             
@@ -57,6 +41,51 @@ class AdminController extends Controller
             }
         return $response;
     
+
+    }
+
+    public function setView(Request $request){
+
+    	if (ViewElement::where('elementName', $request->parent)->first()){
+			$newVE=ViewElement::where('elementName', $request->parent)->first();
+    	}else{
+    		$newVE = new ViewElement;
+	    	$newVE->elementName=$request->parent;
+	    	$newVE->save();
+    	}
+
+    		
+
+    	$data = $request->except(['parent']);
+		foreach($data as $key=>$values)
+		{
+	    	if (VEproperty::where('element_id', $newVE->id)->where('propertyName', $key)->first()){
+	    	
+		    	$newVEprop = VEproperty::where('element_id', $newVE->id)->where('propertyName', $key)->first();
+		    	$newVEprop->propertyValue = $values;
+		    	$newVEprop->save();
+
+	    	} else {
+		    	$newVEprop = new VEproperty;
+		    	$newVEprop->element_id = $newVE->id;
+		    	$newVEprop->propertyName = $key;
+		    	$newVEprop->propertyValue = $values;
+		    	$newVEprop->save();
+    		}
+		}
+
+
+
+    	//return $request;
+
+
+    }
+
+    public function getView(Request $viewRequested){
+    	$view=ViewElement::where('elementName', $viewRequested->viewName)->first();
+    	$veProperties = VEproperty::where('element_id', $view->id)->get();
+
+    	return $veProperties;
 
     }
 }

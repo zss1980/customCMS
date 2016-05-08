@@ -17,12 +17,16 @@ window.addEventListener('load', function () {
       companyName: '',
       companyFeatures: '',
       bgColor: '',
-      img: ''
+      img: '',
+      parent: 'header'
     },
+    viewProperties:[],
   },
 
 ready: function(){
+  this.getView();
   this.keepOld();
+  
   	
   },
 
@@ -50,8 +54,72 @@ events: {
       this.messageToServer.companyFeatures = this.companyFeatures;
       this.messageToServer.bgColor = this.bgcolor;
       this.messageToServer.img = document.getElementById('imgConstr').src;
+      this.sendserver(this.messageToServer);
+
+    },
+
+    sendserver: function(postmessage){
+     Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
+      var sendStatus;
+      sendStatus = this.$http.post('/admin/setView', postmessage).then(function(response)
+        {
+          //alert('updated');
+        }, function(response){
+          console.log(response.data);
+
+        });
+    },
+
+    getView: function () {
+      this.$http.get('/admin/getView', {viewName: 'header'}).then(function(response)
+    {
+      //this.$set('viewProperties', response.data);
+      this.viewProperties = response.data;
+      //console.log (this.viewProperties[0].propertyName);
+      for (index = 0, len = this.viewProperties.length; len>index; index++) {
+        
+        //console.log(this.viewProperties[index].propertyName);
+        if (this.viewProperties[index].propertyName=="companyName") {
+            this.companyName = this.viewProperties[index].propertyValue;
+        }
+        if (this.viewProperties[index].propertyName=="companyFeatures") {
+            this.companyFeatures = this.viewProperties[index].propertyValue;
+        }
+        if (this.viewProperties[index].propertyName=="bgColor") {
+            this.bgcolor = this.viewProperties[index].propertyValue;
+        }
+        if (this.viewProperties[index].propertyName=="img") {
+            document.getElementById('imgConstr').src = this.viewProperties[index].propertyValue;
+        }
+
+       
+      }
+    });
       
-    }
+
+    },
+
+    loadNew: function(){
+      var index;
+      var len;
+      console.log (this.companyName);
+      //alert(this.viewProperties[0]["companyName"]);
+      
+      console.log (vProperties[0]);
+      for (index = 0, len = this.viewProperties.length; len>index; index++) {
+        alert('got it');
+        console.log(this.viewProperties[index].propertyName);
+        if (this.viewProperties[index].propertyName=="companyName") {
+          alert('got it');
+          this.companyName = 'xxx';
+        }
+      }
+
+      /*this.companyName = this.oldCompanyName;
+      this.companyFeatures = this.oldCompanyFeatures;
+      this.bgcolor = this.oldBGcolor;
+      document.getElementById('imgConstr').src=this.imgCurrent;*/
+    },
 
 
 
