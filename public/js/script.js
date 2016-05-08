@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
     bgcolor: '18bc9c',
     oldBGcolor: '',
     imgPrefix: 'img/',
-    imgCurrent: 'img/profile.png',
+    imgCurrent: '../../img/profile.png',
     messageToServer:{
       companyName: '',
       companyFeatures: '',
@@ -48,6 +48,7 @@ events: {
       this.companyFeatures = this.oldCompanyFeatures;
       this.bgcolor = this.oldBGcolor;
       document.getElementById('imgConstr').src=this.imgCurrent;
+      document.getElementById('newImg').value = '';
     },
 
     applyChanges: function(){
@@ -76,6 +77,7 @@ events: {
     {
       //this.$set('viewProperties', response.data);
       this.viewProperties = response.data;
+      //console.log(response.data);
       //console.log (this.viewProperties[0].propertyName);
       for (index = 0, len = this.viewProperties.length; len>index; index++) {
         
@@ -101,32 +103,7 @@ events: {
 
     },
 
-    loadNew: function(){
-      var index;
-      var len;
-      console.log (this.companyName);
-      //alert(this.viewProperties[0]["companyName"]);
-      
-      console.log (vProperties[0]);
-      for (index = 0, len = this.viewProperties.length; len>index; index++) {
-        alert('got it');
-        console.log(this.viewProperties[index].propertyName);
-        if (this.viewProperties[index].propertyName=="companyName") {
-          alert('got it');
-          this.companyName = 'xxx';
-        }
-      }
-
-      /*this.companyName = this.oldCompanyName;
-      this.companyFeatures = this.oldCompanyFeatures;
-      this.bgcolor = this.oldBGcolor;
-      document.getElementById('imgConstr').src=this.imgCurrent;*/
-    },
-
-
-
-
-
+    
 	},
   
 

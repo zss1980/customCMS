@@ -23,9 +23,16 @@ class CustomerController extends Controller
         $dataHeader->image = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'img')->first()->propertyValue;
         $dataHeader->bgColour = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'bgColor')->first()->propertyValue;
 
-        return view('pages.index')->with('data', $dataHeader);
-    }
+        $dataAbout=ViewElement::where('elementName', 'about')->first();
+        $dataAbout->aboutInfoLeft = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'aboutInfoLeft')->first()->propertyValue;
+        $dataAbout->aboutInfoRight = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'aboutInfoRight')->first()->propertyValue;
+        $dataAbout->downloadLink = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'downloadLink')->first()->propertyValue;
+        $dataAbout->downloadCaption = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'downloadCaption')->first()->propertyValue;
+        $dataAbout->bgColour = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'bgColor')->first()->propertyValue;
 
+        return view('pages.index')->with('data', $dataHeader)->with('dataAbout', $dataAbout);
+    }
+ 
     /**
      * Show the form for creating a new resource.
      *

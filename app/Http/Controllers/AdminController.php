@@ -15,6 +15,21 @@ class AdminController extends Controller
     	return view ('pages.admin');
     }
 
+    public function section($secName){
+
+    	$sectionName='header';
+
+    	if ($secName=="header") {
+			return view ('pages.adminHeader');
+    	} elseif ($secName=="about") {
+			return view ('pages.adminAbout');
+    	} else {
+    		return view ('pages.admin');
+    	}
+    	
+
+    }
+
     public function uploadImg(Request $request){
 
         if ($request->hasFile('imag'))
@@ -36,6 +51,35 @@ class AdminController extends Controller
             
             
             if ($request->hasFile('imag')) 
+            {
+                $response[1]= $filename;
+            }
+        return $response;
+    
+
+    }
+
+    public function uploadObj(Request $request){
+
+        if ($request->hasFile('object'))
+            { 
+                $file = $request->file('object');
+                $rules = array('object' => 'required',);
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $filePath=base_path() . '/public/img/' . $filename;
+        
+                $file->move(base_path() . '/public/img/', $filename);
+                /*$img= Image::make($filePath);
+                $img->resize('300', '300');
+                $img->save($filePath);*/
+                 
+           }
+        
+            $response=array();
+            $response[0] = "All records are updated! Have a good Day!";
+            
+            
+            if ($request->hasFile('object')) 
             {
                 $response[1]= $filename;
             }

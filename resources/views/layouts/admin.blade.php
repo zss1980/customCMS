@@ -14,22 +14,22 @@
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
     
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/vue-resource.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/jscolor.js"></script>
+    <script src="../../js/ie-emulation-modes-warning.js"></script>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/vue-resource.js"></script>
+
+    @yield('customScripts')
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -77,9 +77,9 @@
           <ul class="nav nav-sidebar">
           <Label>Sections</Label>
           
-            <li><a href="">Header</a></li>
+            <li><a href="{{ url('admin/header') }}">Header</a></li>
             <li><a href="">Footer</a></li>
-            <li><a href="">About</a></li>
+            <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>
@@ -90,7 +90,7 @@
           <div id="app">
 
           <div class="row placeholders">
-            @yield('header')
+            @yield('sectionName')
           </div>
           <hr>
           <button type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button> <button type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
@@ -109,11 +109,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../js/holder.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../js/ie10-viewport-bug-workaround.js"></script>
     @yield('scripts')
   </body>
 </html>
