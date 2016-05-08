@@ -20,7 +20,8 @@ window.addEventListener('load', function () {
       bgColor: '',
       downloadLink:'',
       downloadCaption: '',
-      parent: 'about'
+      parent: 'about',
+      show: false
     },
     viewProperties:[],
   },
