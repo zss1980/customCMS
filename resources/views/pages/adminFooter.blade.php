@@ -105,7 +105,7 @@ footer .footer-below {
 <LABEL>Copyright text: </LABEL><input class="form-control" v-model="copyrightText">
 <label>Background colour: </label><input id="jscolorPicker" class="form-control jscolor" v-model="bgcolor">
 <label>Background colour: </label><input id="jscolorPicker2" class="form-control jscolor" v-model="bgcolorBottom">
-<pre>@{{$data | json}}</pre>
+
 @stop
 
 @section('scripts')
