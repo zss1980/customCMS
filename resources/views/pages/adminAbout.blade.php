@@ -126,7 +126,7 @@ $(function() {
                     document.getElementById(objTarget).href = "../../img/"+data[1];
                   }
 
-                    //document.getElementById("ajax-response").innerHTML = data[0];
+                    alert('File Uploaded!');
 
                     
                 }
