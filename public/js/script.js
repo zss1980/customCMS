@@ -40,6 +40,7 @@ events: {
       this.oldCompanyName = this.companyName;
       this.oldCompanyFeatures = this.companyFeatures;
       this.oldBGcolor = this.bgcolor;
+      this.imgCurrent = document.getElementById('imgConstr').src;
     },
 
     discardChanges: function(){
@@ -94,6 +95,7 @@ events: {
 
        
       }
+      this.keepOld();
     });
       
 
