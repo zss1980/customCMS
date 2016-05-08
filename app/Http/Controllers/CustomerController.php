@@ -30,7 +30,19 @@ class CustomerController extends Controller
         $dataAbout->downloadCaption = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'downloadCaption')->first()->propertyValue;
         $dataAbout->bgColour = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'bgColor')->first()->propertyValue;
 
-        return view('pages.index')->with('data', $dataHeader)->with('dataAbout', $dataAbout);
+        $dataFooter=ViewElement::where('elementName', 'footer')->first();
+        $dataFooter->footerLeftText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerLeftText')->first()->propertyValue;
+        $dataFooter->footerRightText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerRightText')->first()->propertyValue;
+        $dataFooter->footerCentreText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerCentreText')->first()->propertyValue;
+        $dataFooter->footerLeftCaption = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerLeftCaption')->first()->propertyValue;
+         $dataFooter->footerRightCaption = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerRightCaption')->first()->propertyValue;
+        $dataFooter->footerCentreCaption = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerCentreCaption')->first()->propertyValue;
+        $dataFooter->copyrightText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'copyrightText')->first()->propertyValue;
+        $dataFooter->bgcolorBottom = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgcolorBottom')->first()->propertyValue;
+        $dataFooter->bgColour = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgColor')->first()->propertyValue;
+
+        return view('pages.index')->with('data', $dataHeader)->with('dataFooter', $dataFooter)
+                                    ->with('dataAbout', $dataAbout);
     }
  
     /**

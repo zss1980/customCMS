@@ -23,6 +23,8 @@ class AdminController extends Controller
 			return view ('pages.adminHeader');
     	} elseif ($secName=="about") {
 			return view ('pages.adminAbout');
+		} elseif ($secName=="footer") {
+			return view ('pages.adminFooter');
     	} else {
     		return view ('pages.admin');
     	}

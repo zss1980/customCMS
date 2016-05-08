@@ -21,7 +21,9 @@
 
     <!-- Custom styles for this template -->
     <link href="../../css/dashboard.css" rel="stylesheet">
-    
+    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -55,7 +57,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ url('admin/header') }}">Header</a></li>
             <li><a href="{{ url('admin/about') }}">About</a></li>
-            
+            <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             
           </ul>
           
@@ -76,8 +78,8 @@
           <Label>Sections</Label>
           
             <li><a href="{{ url('admin/header') }}">Header</a></li>
-            <li><a href="">Footer</a></li>
             <li><a href="{{ url('admin/about') }}">About</a></li>
+            <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>

@@ -50,3 +50,38 @@ Test
         </div>
     </section>
 @stop
+
+@section('footer')
+
+
+<footer class="text-center" >
+        <div class="footer-above" style="background: #{{$dataFooter->bgColour}};">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>{{$dataFooter->footerLeftCaption}}</h3>
+                        <p>{!!$dataFooter->footerLeftText!!}</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>{{$dataFooter->footerCentreCaption}}</h3>
+                        <p>{!!$dataFooter->footerCentreText!!}</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>{{$dataFooter->footerRightCaption}}</h3>
+                        <p>{!!$dataFooter->footerRightText!!}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below" style="background: #{{$dataFooter->bgcolorBottom}};">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; {{$dataFooter->copyrightText}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+@stop
