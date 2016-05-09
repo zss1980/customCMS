@@ -85,9 +85,8 @@ $(function() {
             var filedata = new FormData();
             var f1 = $(this).find('input[type=file]')[0].files[0];
             filedata.append('imag', f1);
-            filedata.append('caption', $(this).find('input[name="caption"]').val());
-            filedata.append('info', $(this).find('textarea[name="info"]').val());
-            filedata.append('id', $(this).find('input[name="id"]').val());
+            filedata.append('height', '300');
+            filedata.append('width', '300');
 
             
 

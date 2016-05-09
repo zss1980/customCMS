@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Image;
 use App\ViewElement;
 use App\VEproperty;
+use App\Project;
 
 class AdminController extends Controller
 {
@@ -25,6 +26,8 @@ class AdminController extends Controller
 			return view ('pages.adminFooter');
     	} elseif ($secName=="pview") {
 			return view ('pages.adminProjectView');
+    	} elseif ($secName=="padd") {
+			return view ('pages.adminProjectAdd');
     	} else {
     		return view ('pages.admin');
     	}
@@ -43,7 +46,9 @@ class AdminController extends Controller
         
                 $file->move(base_path() . '/public/img/', $filename);
                 $img= Image::make($filePath);
-                $img->resize('300', '300');
+                if ($request->height) {
+                	$img->resize($request->height, $request->width);
+                } 
                 $img->save($filePath);
                  
            }
@@ -143,6 +148,27 @@ class AdminController extends Controller
 		}
 
     	return $veProperties;
+
+    }
+
+    public function setProject(Request $request){
+
+    	if (Project::where('title', $request->projectTitle)->first()){
+			$newProj=Project::where('title', $request->projectTitle)->first();
+    	}else{
+    		$newProj = new Project;
+	    	$newProj->title=$request->projectTitle;
+	    	
+    	}
+    	$newProj->description = $request->projectDescription;
+    	$newProj->date = $request->projectDate;
+    	$newProj->cost = $request->projectCost;
+    	$newProj->category = $request->category;
+    	$newProj->image = $request->image;
+    	$newProj->save();
+
+    	return $newProj->id;
+
 
     }
 }

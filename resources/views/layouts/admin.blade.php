@@ -59,6 +59,7 @@
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
+            <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
           </ul>
           
         </div>
@@ -81,6 +82,7 @@
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
+            <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
             <li><a href="">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>
@@ -94,7 +96,8 @@
             @yield('sectionName')
           </div>
           <hr>
-          <button type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button> <button type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
+          
+          <button id="btnApply" type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button><button id="btnDis" type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
 
           <h2 class="sub-header">Edit section</h2>
           <div >
