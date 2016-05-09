@@ -72,8 +72,16 @@ events: {
       this.categoryList = this.oldCategoryList;
       document.getElementById('imgProj').src=this.imgCurrent;
       this.serverStatus = false;
-      document.getElementById('btnApply').innerHTML = "Apply changes";
-      document.getElementById('btnApply').style.display='inline';
+      
+      if (this.newProject==true)
+      {
+        document.getElementById('btnApply').innerHTML = "Save project";
+      } else {
+        document.getElementById('btnApply').innerHTML = "Apply changes";
+        document.getElementById('btnApply').style.display='inline';
+
+      }
+      
       document.getElementById('btnDis').innerHTML = "Discard changes";
 
     },
@@ -136,7 +144,7 @@ events: {
          
 
       }
-      document.getElementById('btnApply').innerHTML = "Save Project";
+      document.getElementById('btnApply').innerHTML = "Save project";
       this.keepOld();
     });
       
