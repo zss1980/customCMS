@@ -17,14 +17,14 @@ class AdminController extends Controller
 
     public function section($secName){
 
-    	$sectionName='header';
-
     	if ($secName=="header") {
 			return view ('pages.adminHeader');
     	} elseif ($secName=="about") {
 			return view ('pages.adminAbout');
 		} elseif ($secName=="footer") {
 			return view ('pages.adminFooter');
+    	} elseif ($secName=="pview") {
+			return view ('pages.adminProjectView');
     	} else {
     		return view ('pages.admin');
     	}
@@ -108,7 +108,12 @@ class AdminController extends Controller
 	    	if (VEproperty::where('element_id', $newVE->id)->where('propertyName', $key)->first()){
 	    	
 		    	$newVEprop = VEproperty::where('element_id', $newVE->id)->where('propertyName', $key)->first();
-		    	$newVEprop->propertyValue = $values;
+		    	if (is_array($values))
+		    	{
+		    		$newVEprop->propertyValue = serialize($values);
+		    	} else {
+		    		$newVEprop->propertyValue = $values;
+		    	}
 		    	$newVEprop->save();
 
 	    	} else {
@@ -130,6 +135,12 @@ class AdminController extends Controller
     public function getView(Request $viewRequested){
     	$view=ViewElement::where('elementName', $viewRequested->viewName)->first();
     	$veProperties = VEproperty::where('element_id', $view->id)->get();
+    	foreach($veProperties as $values)
+		{
+			if ($values->propertyName == 'options') {
+				$values->propertyValue = unserialize($values->propertyValue);
+			}
+		}
 
     	return $veProperties;
 

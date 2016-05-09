@@ -58,7 +58,7 @@
             <li><a href="{{ url('admin/header') }}">Header</a></li>
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
-            
+            <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
           </ul>
           
         </div>
@@ -80,6 +80,7 @@
             <li><a href="{{ url('admin/header') }}">Header</a></li>
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
+            <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
             <li><a href="">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>
@@ -114,6 +115,9 @@
     <script src="../../js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     @yield('scripts')
   </body>
 </html>
