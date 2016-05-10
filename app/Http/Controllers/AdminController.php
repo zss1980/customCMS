@@ -28,11 +28,20 @@ class AdminController extends Controller
 			return view ('pages.adminProjectView');
     	} elseif ($secName=="padd") {
 			return view ('pages.adminProjectAdd');
+    	} elseif ($secName=="projects") {
+			return redirect()->action('AdminController@admProjects');
     	} else {
     		return view ('pages.admin');
     	}
     	
 
+    }
+
+    public function admProjects(){
+
+    	$allProjects = Project::all();
+
+    	return view ('pages.adminProjects')->with('projects', $allProjects);
     }
 
     public function uploadImg(Request $request){

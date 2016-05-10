@@ -92,7 +92,7 @@ events: {
       this.messageToServer.projectCost = this.projectCost;
       this.messageToServer.projectDate = this.projectDate;
       this.messageToServer.category = this.categoryList;
-      this.messageToServer.image = this.imgCurrent;
+      this.messageToServer.image = document.getElementById('imgProj').src;
       this.sendserver(this.messageToServer);
     },
 

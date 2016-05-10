@@ -15,6 +15,7 @@ Route::get('/', 'CustomerController@index')->name('root');
 
 
 Route::get('admin', 'AdminController@index')->name('admin');
+Route::get('admin/admProjects', 'AdminController@admProjects')->name('admin.admProjects');
 
 
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ViewElement;
 use App\VEproperty;
+use App\Project;
 
 class CustomerController extends Controller
 {
@@ -41,8 +42,10 @@ class CustomerController extends Controller
         $dataFooter->bgcolorBottom = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgcolorBottom')->first()->propertyValue;
         $dataFooter->bgColour = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgColor')->first()->propertyValue;
 
+        $allProjects = Project::paginate(6);
+
         return view('pages.index')->with('data', $dataHeader)->with('dataFooter', $dataFooter)
-                                    ->with('dataAbout', $dataAbout);
+                                    ->with('dataAbout', $dataAbout)->with('projects', $allProjects);
     }
  
     /**

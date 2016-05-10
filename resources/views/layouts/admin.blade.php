@@ -24,6 +24,7 @@
     <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -60,6 +61,7 @@
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
             <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
+            <li><a href="{{ url('admin/projects') }}">Projects</a></li>
           </ul>
           
         </div>
@@ -83,7 +85,7 @@
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
             <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
-            <li><a href="">Projects</a></li>
+            <li><a href="{{ url('admin/projects') }}">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>
           <hr>
