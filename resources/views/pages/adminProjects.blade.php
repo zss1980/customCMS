@@ -26,10 +26,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <?php $count=0;
+                <?php $count=0;
                   ?>
                   @foreach($projects as $project)
+                <tr id="tr{{$count}}">
+                  
                   <th>{{++$count}}</th>
                   <td>{{$project->id}}</td>
                   <td>{{$project->title}}</td>
@@ -39,7 +40,7 @@
                   <td>{{$project->description}}</td>
                   <td><img class="img-responsive img-centered" width="100" height="100" src="{{$project->image}}"></td>
                   <td>
-                     <button>test</button>
+                     <button class="btn btn-success">Edit</button><button id="deleteRec" tr="{{$count}}" class="btn btn-danger" onclick="delRec({{$count}}, {{$project->id}})">Delete</button>
                     </td>
                 </tr>
                 
@@ -47,15 +48,51 @@
               </tbody>
   </table>
 </div>
+<div id="output1"></div>
 @stop
 
 @section('scripts')
 
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
   <script>
+  function delRec(a, b) {
+    $( "#tr"+(a-1) ).remove();
+
+    $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+        
+            var filedata = new FormData();
+            filedata.append('id', b);
+            
+            $.ajax({
+                type     : "POST",
+                url      : '/admin/destroyProject',
+                data     : filedata,
+                cache    : false,
+                contentType: false,
+                processData: false,
+                success  : function(data) {
+                
+                  document.getElementById('output1').innerHTML= "<div class=\'alert alert-success\'><strong>Success!</strong> Project  has been deleted.</div></div></div>";
+
+                    
+
+                    
+                }
+            });
+
+            return false;
+
+        };
+
+
   $(function() {
     $('#table_id').DataTable();
     
-  });
+
+});
   </script>
 @stop

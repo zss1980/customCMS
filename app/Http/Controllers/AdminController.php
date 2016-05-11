@@ -180,4 +180,10 @@ class AdminController extends Controller
 
 
     }
+
+    public function destroyProject(Request $request){
+
+    	Project::destroy($request->id);
+
+    }
 }

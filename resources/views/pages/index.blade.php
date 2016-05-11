@@ -50,7 +50,7 @@ Test
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="{{$project->image}}" width="360" height="300" class="img-responsive" alt="">
+                        <img src="{{$project->image}}" width="360" height="225" class="img-responsive" alt="">
                     </a>
                 </div>
                 <?php $count++;?>
