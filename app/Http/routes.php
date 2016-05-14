@@ -17,6 +17,18 @@ Route::get('/', 'CustomerController@index')->name('root');
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/admProjects', 'AdminController@admProjects')->name('admin.admProjects');
 
+Route::post('/admin/contact_me', function (Request $request) {
+    
+    Mail::raw($_POST["message"] . " phone:" . $_POST["phone"], function ($message) {
+    $message->from($_POST["email"], $_POST["name"]);
+    $message->subject("appointment from the web-site");
+
+    $message->to('szautkin@gmail.com');
+});
+
+});
+
+
 
 
 Route::get('admin/getView', 'AdminController@getView')->name('admin.getView');
