@@ -60,7 +60,6 @@
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
-            <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
             <li><a href="{{ url('admin/projects') }}">Projects</a></li>
           </ul>
           
@@ -84,7 +83,6 @@
             <li><a href="{{ url('admin/about') }}">About</a></li>
             <li><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
-            <li><a href="{{ url('admin/padd') }}">Add New Project</a></li>
             <li><a href="{{ url('admin/projects') }}">Projects</a></li>
             <li><a href="">Contacts</a></li>
           </ul>

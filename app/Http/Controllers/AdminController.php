@@ -162,12 +162,14 @@ class AdminController extends Controller
     }
 
     public function setProject(Request $request){
+    	$isNewProj = false;
 
-    	if (Project::where('title', $request->projectTitle)->first()){
-			$newProj=Project::where('title', $request->projectTitle)->first();
+    	if ($request->projectId){
+			$newProj=Project::find($request->projectId);
     	}else{
     		$newProj = new Project;
 	    	$newProj->title=$request->projectTitle;
+	    	$isNewProj = true;
 	    	
     	}
     	$newProj->description = $request->projectDescription;
@@ -177,7 +179,9 @@ class AdminController extends Controller
     	$newProj->image = $request->image;
     	$newProj->save();
 
-    	return $newProj->id;
+    	$newProj->state = $isNewProj;
+
+    	return $newProj;
 
 
     }

@@ -91,8 +91,10 @@ Vue.component('editor', {
   },
 
   events:{
-    'changes-saved': function(responseStatus){
+    'changes-saved': function(responseStatus, isNew){
+    
     if (responseStatus){
+      if (!isNew){
         this.showServerResponse = true;
         this.$parent.projects[this.$parent.editedRecord].description = this.$parent.projectDescription;
         this.$parent.projects[this.$parent.editedRecord].title = this.$parent.projectTitle;
@@ -100,13 +102,25 @@ Vue.component('editor', {
         this.$parent.projects[this.$parent.editedRecord].date = this.$parent.projectDate;
         this.$parent.projects[this.$parent.editedRecord].category = this.$parent.projectCategory;
         this.$parent.projects[this.$parent.editedRecord].image = document.getElementById('imgProj').src;
+        } else {
+          this.showServerResponse = true;
+          this.$parent.projects.push({id: this.$parent.projectID,
+                                      title: this.$parent.projectTitle,
+                                      description: this.$parent.projectDescription,
+                                       cost: this.$parent.projectCost,
+                                       date: this.$parent.projectDate,
+                                       category: this.$parent.projectCategory,
+                                       image: document.getElementById('imgProj').src});
 
+        }
         window.setTimeout(this.clearMessage, 5000);
 
       } else {
-        alert('Error!!Didn\'t delete it!');
+        alert('Error!!Didn\'t change it!');
 
       }
+    
+
   },
   }
 })
@@ -238,6 +252,8 @@ events: {
   methods: {
 
     addNewProject: function(){
+      this.editorReset();
+      document.getElementById('btnApply').innerHTML = "Save project";
 
     },
 
@@ -278,14 +294,15 @@ events: {
     },
 
     editorReset: function(){
-      this.projectTitle = '';
-      this.projectDescription = '';
-      this.projectCost = '';
-      this.projectDate = '';
-      this.projectCategory = '';
-      this.imgCurrent = '';
+      this.projectTitle = "Projec Title";
+      this.projectDescription = "Use this area of the page to describe your project.";
+      this.projectCost = "n/a";
+      this.projectDate = "pick a date";
+      this.projectCategory = 'none';
+      this.imgCurrent = '../img/portfolio/cabin.png';
       this.projectID=-1;
       this.editedRecord = -1;
+
     },
 
     discardChanges: function(){
@@ -299,6 +316,9 @@ events: {
     },
 
     applyChanges: function(){
+      if (this.projectID!=-1){
+        this.messageToServer.projectId = this.projectID;
+      }
       this.messageToServer.projectDescription = this.projectDescription;
       this.messageToServer.projectTitle = this.projectTitle;
       this.messageToServer.projectCost = this.projectCost;
@@ -315,7 +335,9 @@ events: {
       sendStatus = this.$http.post('/admin/setProject', postmessage).then(function(response)
         {
           responseStatus = true;
-          this.$broadcast('changes-saved', responseStatus);
+          this.projectID=response.data.id;
+          this.$broadcast('changes-saved', responseStatus, response.data.state);
+          
           this.keepOld();
 
         }, function(response){
@@ -375,7 +397,7 @@ events: {
          
 
       }
-      document.getElementById('btnApply').innerHTML = "Save project";
+      //
       this.keepOld();
     });
       

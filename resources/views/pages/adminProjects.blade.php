@@ -10,7 +10,7 @@
 @stop
 
 @section('edit')
-<button type="button" class="btn btn-success" @click="addNewProject()" data-toggle="modal" data-target="#myModal" disabled>Add new</button>
+<button type="button" class="btn btn-success" @click="addNewProject()" data-toggle="modal" data-target="#myModal">Add new</button>
   <div class="table-responsive">
   <table class="table">
      <thead>
