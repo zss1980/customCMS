@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            <button id="btnApply" type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button><button id="btnDis" type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button><br>
             <div class="row"><div class="col-sm-4">
             <div v-show="serverStatus" class="alert alert-success">
   <strong>Success!</strong> Project (changes) has (have) been saved.</div></div></div>

@@ -65,7 +65,7 @@
                         <a href="#contact">Contact</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/admin">Sign in</a>
+                        <a href="/admin/projects">Sign in</a>
                     </li>
                 </ul>
             </div>

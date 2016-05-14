@@ -91,17 +91,12 @@
           <hr>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="sub-header">Site section preview</h1>
           <div id="app">
 
           <div class="row placeholders">
             @yield('sectionName')
           </div>
           <hr>
-          
-          <button id="btnApply" type="button" class="btn btn-success" @click="applyChanges()">Apply changes</button><button id="btnDis" type="button" class="btn btn-danger" @click="discardChanges()">Discard changes</button>
-
-          <h2 class="sub-header">Edit section</h2>
           <div >
             @yield('edit')
           </div>
@@ -124,5 +119,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     @yield('scripts')
+
+    @yield('modals')
   </body>
 </html>

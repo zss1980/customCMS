@@ -29,7 +29,8 @@ class AdminController extends Controller
     	} elseif ($secName=="padd") {
 			return view ('pages.adminProjectAdd');
     	} elseif ($secName=="projects") {
-			return redirect()->action('AdminController@admProjects');
+			return view ('pages.adminProjects');
+			//redirect()->action('AdminController@admProjects');
     	} else {
     		return view ('pages.admin');
     	}
@@ -41,7 +42,7 @@ class AdminController extends Controller
 
     	$allProjects = Project::all();
 
-    	return view ('pages.adminProjects')->with('projects', $allProjects);
+    	return $allProjects;
     }
 
     public function uploadImg(Request $request){
