@@ -11,7 +11,8 @@
 
 @section('edit')
 <button type="button" class="btn btn-success" @click="addNewProject()" data-toggle="modal" data-target="#myModal" disabled>Add new</button>
-  <table class="table table-responsive">
+  <div class="table-responsive"></div>
+  <table class="table">
      <thead>
                 <tr>
                   <th>#</th>
@@ -45,7 +46,7 @@
                 
               </tbody>
   </table>
-
+</div>
 
    
    <editor :show.sync="showEditor"
