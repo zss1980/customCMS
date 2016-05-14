@@ -22,8 +22,8 @@
                   <th>@{{dateCaption}}</th>
                   <th>@{{costCaption}}</th>
                   <th>Description</th>
-                  <th></th>
-                  <th></th>
+                  <th>Images</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
