@@ -11,7 +11,7 @@
 
 @section('edit')
 <button type="button" class="btn btn-success" @click="addNewProject()" data-toggle="modal" data-target="#myModal" disabled>Add new</button>
-  <table class="table">
+  <table class="table table-responsive">
      <thead>
                 <tr>
                   <th>#</th>
