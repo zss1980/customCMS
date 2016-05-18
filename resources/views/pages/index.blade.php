@@ -30,12 +30,13 @@ Test
 @stop
 
 @section('projects')
+@inject('prjValues', 'App\HTTP\controllers\CustomerController')
 <section id="portfolio">
         <div class="container">
             
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
+                    <h2>{{$prjValues->getPropertyValue('sectionPortfolioName')}}</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -115,7 +116,7 @@ Test
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
+                    <h2>{{$prjValues->getPropertyValue('sectionAboutName')}}</h2>
                     <hr class="star-light">
                 </div>
             </div>

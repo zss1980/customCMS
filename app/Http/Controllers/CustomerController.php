@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\ViewElement;
 use App\VEproperty;
 use App\Project;
+use Mail;
+use Input;
 
 class CustomerController extends Controller
 {
@@ -47,6 +49,59 @@ class CustomerController extends Controller
         return view('pages.index')->with('data', $dataHeader)->with('dataFooter', $dataFooter)
                                     ->with('dataAbout', $dataAbout)->with('projects', $allProjects);
     }
+
+    public function sendMail(Request $request)
+    {
+        $viewElem = ViewElement::where('elementName','contacts')->first();
+        $emailTo = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'siteEmail')->first()->propertyValue;
+    
+    $data = $request->only('name', 'email', 'phone');
+    $data['messageLines'] = explode("\n", $request->get('message'));
+    $data['emailTo'] = $emailTo;        
+
+     Mail::send('mail.email', $data, function ($message) use ($data) {
+      $message->subject('request an appointment from the web-site by: '.$data['name'])
+              ->to($data['emailTo'])
+              ->from($data['email'], $data['name'])
+              ->replyTo($data['email']);
+    });
+
+    }
+
+    public function getView(Request $viewRequested){
+        $view=ViewElement::where('elementName', $viewRequested->viewName)->first();
+        $veProperties = VEproperty::where('element_id', $view->id)->get();
+        foreach($veProperties as $values)
+        {
+            if ($values->propertyName == 'options') {
+                $values->propertyValue = unserialize($values->propertyValue);
+            }
+        }
+
+        return $veProperties;
+}
+
+public function getEmailMess() {
+        $viewElem = ViewElement::where('elementName','contacts')->first();
+
+        $emailMess = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'siteEmailMessage')->first()->propertyValue;
+        return $emailMess;
+    }
+
+    public function getEmail() {
+        $viewElem = ViewElement::where('elementName','contacts')->first();
+
+        $email = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'siteEmail')->first()->propertyValue;
+        return $email;
+    }
+
+    public function getPropertyValue($request) {
+        $viewElem = ViewElement::where('elementName','settings')->first();
+
+        $projectValue = VEproperty::where('element_id', $viewElem->id)->where('propertyName', $request)->first()->propertyValue;
+        return $projectValue;
+    }
+
  
     /**
      * Show the form for creating a new resource.

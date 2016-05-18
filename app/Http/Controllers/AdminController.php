@@ -9,9 +9,16 @@ use Image;
 use App\ViewElement;
 use App\VEproperty;
 use App\Project;
+use App\User;
 
 class AdminController extends Controller
 {
+    
+public function __construct()
+{
+    $this->middleware('auth');
+}
+
     public function index(){
     	return view ('pages.admin');
     }
@@ -30,9 +37,14 @@ class AdminController extends Controller
 			return view ('pages.adminProjectAdd');
     	} elseif ($secName=="projects") {
 			return view ('pages.adminProjects');
-			//redirect()->action('AdminController@admProjects');
+    	} elseif ($secName=="contacts") {
+			return view ('pages.adminContacts');
+    	} elseif ($secName=="settings") {
+			return view ('pages.adminSettings');
     	} else {
-    		return view ('pages.admin');
+    		$allUsers = User::all();
+    	$count = count($allUsers);
+    		return view ('pages.admin')->with('users', $count);
     	}
     	
 
@@ -41,6 +53,7 @@ class AdminController extends Controller
     public function admProjects(){
 
     	$allProjects = Project::all();
+    	//echo count($allProjects);
 
     	return $allProjects;
     }
@@ -160,6 +173,28 @@ class AdminController extends Controller
     	return $veProperties;
 
     }
+
+    public function getEmailMess() {
+    	$viewElem = ViewElement::where('elementName','contacts')->first();
+
+    	$emailMess = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'siteEmailMessage')->first()->propertyValue;
+    	return $emailMess;
+    }
+
+public function getProjectName() {
+    	$viewElem = ViewElement::where('elementName','settings')->first();
+
+    	$projectName = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'projectName')->first()->propertyValue;
+    	return $projectName;
+    }
+
+    public function getPropertyValue($request) {
+        $viewElem = ViewElement::where('elementName','settings')->first();
+
+        $projectValue = VEproperty::where('element_id', $viewElem->id)->where('propertyName', $request)->first()->propertyValue;
+        return $projectValue;
+    }
+     
 
     public function setProject(Request $request){
     	$isNewProj = false;

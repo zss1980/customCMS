@@ -47,11 +47,12 @@ section.success a.active {
     background: #fff;
 } 
 </style>
+@inject('prjValues', 'App\HTTP\controllers\AdminController')
 <section class="success" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
+                    <h2>{{$prjValues->getPropertyValue('sectionAboutName')}}</h2>
                     <hr class="star-light">
                 </div>
             </div>

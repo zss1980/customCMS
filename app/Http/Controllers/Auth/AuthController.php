@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -28,7 +30,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin/projects';
 
     /**
      * Create a new authentication controller instance.
@@ -69,4 +71,46 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function getRegister()
+{
+    if (count(User::all())>1) {
+        return redirect('login');
+    } else {
+        return $this->showRegistrationForm();
+    }
+}
+
+public function showRegistrationForm()
+    {
+        if (count(User::all())>1) {
+            return redirect('login');
+        } else {
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView);
+        }
+
+        return view('auth.register');
+    }
+}
+
+
+public function register(Request $request)
+{
+     if (count(User::all())>1) {
+    
+    } else {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        return redirect($this->redirectPath());
+    }
+}
 }

@@ -42,6 +42,7 @@
   </head>
 
   <body>
+@inject('prjName', 'App\HTTP\controllers\AdminController')
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -52,15 +53,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url('/') }}">Project name</a>
+          <a class="navbar-brand" href="{{ url('/') }}">{{$prjName->getProjectName()}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('admin/header') }}">Header</a></li>
-            <li><a href="{{ url('admin/about') }}">About</a></li>
-            <li><a href="{{ url('admin/footer') }}">Footer</a></li>
-            <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
-            <li><a href="{{ url('admin/projects') }}">Projects</a></li>
+            <li class="{{ Request::path() ==  'admin/projects' ? 'active' : ''}}"><a href="{{ url('admin/projects') }}">Projects</a></li>
+            <li class="{{ Request::path() ==  'admin/header' ? 'active' : ''}}"><a href="{{ url('admin/header') }}">Header</a></li>
+            <li class="{{ Request::path() ==  'admin/about' ? 'active' : ''}}"><a href="{{ url('admin/about') }}">About</a></li>
+            <li class="{{ Request::path() ==  'admin/footer' ? 'active' : ''}}"><a href="{{ url('admin/footer') }}">Footer</a></li>
+            <li class="{{ Request::path() ==  'admin/pview' ? 'active' : ''}}"><a href="{{ url('admin/pview') }}">Project Template</a></li>
+            <li class="{{ Request::path() ==  'admin/contacts' ? 'active' : ''}}"><a href="{{ url('admin/contacts') }}">Contacts</a></li>
+            <li class="{{ Request::path() ==  'admin/settings' ? 'active' : ''}}"><a href="{{ url('admin/settings') }}">Settings</a></li>
+            <li class="{{ Request::path() ==  '/auth/logout' ? 'active' : ''}}"><a href="{{ url('/auth/logout') }}" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
           </ul>
           
         </div>
@@ -71,20 +75,14 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul><hr>
-          <ul class="nav nav-sidebar">
+          <li class="{{ Request::path() ==  'admin/settings' ? 'active' : ''}}"><a href="{{ url('admin/settings') }}">Settings</a></li>
           <Label>Sections</Label>
-          
-            <li><a href="{{ url('admin/header') }}">Header</a></li>
-            <li><a href="{{ url('admin/about') }}">About</a></li>
-            <li><a href="{{ url('admin/footer') }}">Footer</a></li>
-            <li><a href="{{ url('admin/pview') }}">Project Template</a></li>
-            <li><a href="{{ url('admin/projects') }}">Projects</a></li>
-            <li><a href="">Contacts</a></li>
+          <li class="{{ Request::path() ==  'admin/projects' ? 'active' : ''}}"><a href="{{ url('admin/projects') }}">Projects</a></li>
+            <li class="{{ Request::path() ==  'admin/header' ? 'active' : ''}}"><a href="{{ url('admin/header') }}">Header</a></li>
+            <li class="{{ Request::path() ==  'admin/about' ? 'active' : ''}}"><a href="{{ url('admin/about') }}">About</a></li>
+            <li class="{{ Request::path() ==  'admin/footer' ? 'active' : ''}}"><a href="{{ url('admin/footer') }}">Footer</a></li>
+            <li class="{{ Request::path() ==  'admin/pview' ? 'active' : ''}}"><a href="{{ url('admin/pview') }}">Project Template</a></li>
+            <li class="{{ Request::path() ==  'admin/contacts' ? 'active' : ''}}"><a href="{{ url('admin/contacts') }}">Contacts</a></li>
           </ul>
           <hr>
         </div>

@@ -12,24 +12,12 @@
 */
 
 Route::get('/', 'CustomerController@index')->name('root');
-
+Route::post('/sendMail', 'CustomerController@sendMail')->name('send.mail');
+Route::get('/getView', 'CustomerController@getView')->name('getView');
+Route::get('auth/logout', 'Auth\AuthController@logout');
 
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('admin/admProjects', 'AdminController@admProjects')->name('admin.admProjects');
-
-Route::post('/admin/contact_me', function (Request $request) {
-    
-    Mail::raw($_POST["message"] . " phone:" . $_POST["phone"], function ($message) {
-    $message->from($_POST["email"], $_POST["name"]);
-    $message->subject("appointment from the web-site");
-
-    $message->to('szautkin@gmail.com');
-});
-
-});
-
-
-
 
 Route::get('admin/getView', 'AdminController@getView')->name('admin.getView');
 Route::post('admin/uploadImg', 'AdminController@uploadImg')->name('admin.uploadImg');
@@ -38,3 +26,8 @@ Route::post('admin/setView', 'AdminController@setView')->name('admin.setView');
 Route::post('admin/setProject', 'AdminController@setProject')->name('admin.setProject');
 Route::post('admin/destroyProject', 'AdminController@destroyProject')->name('admin.destroyProject');
 Route::get('admin/{secName}', 'AdminController@section')->name('admin.{secName}');
+
+Route::auth();
+    // Only authenticated users may enter...
+
+Route::get('/home', 'HomeController@index');

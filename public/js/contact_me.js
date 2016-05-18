@@ -25,16 +25,22 @@ $(function() {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
+            
+            var filedata = new FormData();
+            filedata.append('name', name);
+            filedata.append('phone', phone);
+            filedata.append('email', email);
+            filedata.append('message', message);
+
+
+
             $.ajax({
-                url: "/admin/contact_me",
+                url: "/sendMail",
                 type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
-                },
-                cache: false,
+                data: filedata,
+                cache    : false,
+                contentType: false,
+                processData: false,
                 success: function() {
                     // Enable button & show success message
                     $("#btnSubmit").attr("disabled", false);

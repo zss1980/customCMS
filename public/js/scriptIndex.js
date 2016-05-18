@@ -32,7 +32,7 @@ events: {
   methods: {
     
     getView: function () {
-      this.$http.get('/admin/getView', {viewName: 'projview'}).then(function(response)
+      this.$http.get('/getView', {viewName: 'projview'}).then(function(response)
     {
       //this.$set('viewProperties', response.data);
       this.viewProperties = response.data;

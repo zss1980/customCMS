@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('sectionName')
-
+{{$users}}
 @stop
 
 @section('edit')
