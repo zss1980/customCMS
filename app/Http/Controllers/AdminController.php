@@ -187,7 +187,7 @@ public function getProjectName() {
 
     	$projectName = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'projectName')->first()->propertyValue;
     	} else {
-        	$projectName = 'Setting up...'
+        	$projectName = 'Setting up...';
         }
     	return $projectName;
     }
@@ -198,7 +198,7 @@ public function getProjectName() {
 
         $projectValue = VEproperty::where('element_id', $viewElem->id)->where('propertyName', $request)->first()->propertyValue;
         } else {
-        	$projectValue = 'Setting up...'
+        	$projectValue = 'Setting up...';
         }
 
         return $projectValue;
