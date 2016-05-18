@@ -182,16 +182,25 @@ public function __construct()
     }
 
 public function getProjectName() {
+    	if (ViewElement::where('elementName','settings')->first()){
     	$viewElem = ViewElement::where('elementName','settings')->first();
 
     	$projectName = VEproperty::where('element_id', $viewElem->id)->where('propertyName', 'projectName')->first()->propertyValue;
+    	} else {
+        	$projectName = 'Setting up...'
+        }
     	return $projectName;
     }
 
     public function getPropertyValue($request) {
+        if (ViewElement::where('elementName','settings')->first()){
         $viewElem = ViewElement::where('elementName','settings')->first();
 
         $projectValue = VEproperty::where('element_id', $viewElem->id)->where('propertyName', $request)->first()->propertyValue;
+        } else {
+        	$projectValue = 'Setting up...'
+        }
+
         return $projectValue;
     }
      
