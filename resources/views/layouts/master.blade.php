@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@inject('prjValues', 'App\HTTP\controllers\CustomerController')
 <head>
 
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>{{$prjValues->getPropertyValue('projectName')}}</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,7 +54,7 @@
 </head>
 <div id="app">
 <body id="page-top" class="index">
-@inject('prjValues', 'App\HTTP\controllers\CustomerController')
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
