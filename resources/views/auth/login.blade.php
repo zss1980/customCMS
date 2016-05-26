@@ -59,7 +59,7 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                                <div class="well" style="color:black;">login: admin@mail.com|password: admin1</div>
+                                
                             </div>
                         </div>
                     </form>
