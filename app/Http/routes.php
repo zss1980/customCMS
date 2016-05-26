@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,7 +11,19 @@
 |
 */
 
-Route::get('/', 'CustomerController@index')->name('root');
+//Route::get('/', 'CustomerController@index')->name('root');
+//Route::get('install', 'CustomerController@install');
+Route::get('home', 'CustomerController@index');
+
+Route::get('/', function(){
+if (count(User::all())<1) {
+        
+        return redirect('register');			
+    } else {
+        return redirect('home');
+    }
+});
+
 Route::post('/sendMail', 'CustomerController@sendMail')->name('send.mail');
 Route::get('/getView', 'CustomerController@getView')->name('getView');
 Route::get('auth/logout', 'Auth\AuthController@logout');
@@ -30,4 +42,4 @@ Route::get('admin/{secName}', 'AdminController@section')->name('admin.{secName}'
 Route::auth();
     // Only authenticated users may enter...
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');

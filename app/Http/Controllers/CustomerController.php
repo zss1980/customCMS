@@ -10,6 +10,8 @@ use App\VEproperty;
 use App\Project;
 use Mail;
 use Input;
+use App\User;
+
 
 class CustomerController extends Controller
 {
@@ -20,6 +22,32 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if (count(User::all())<2) {
+        $dataHeader = new ViewElement;
+        $dataHeader->companyName = "Set it up";
+        $dataHeader->companyFeatures = "Set it up";
+        $dataHeader->image = "Set it up";
+        $dataHeader->bgColour = "Set it up";
+
+        $dataAbout = new ViewElement;
+        $dataAbout->aboutInfoLeft = "Set it up";
+        $dataAbout->aboutInfoRight = "Set it up";
+        $dataAbout->downloadLink = "Set it up";
+        $dataAbout->downloadCaption = "Set it up";
+        $dataAbout->bgColour = "Set it up";
+
+        $dataFooter = new ViewElement;
+        $dataFooter->footerLeftText = "Set it up";
+        $dataFooter->footerRightText = "Set it up";
+        $dataFooter->footerCentreText = "Set it up";
+        $dataFooter->footerLeftCaption = "Set it up";
+         $dataFooter->footerRightCaption = "Set it up";
+        $dataFooter->footerCentreCaption = "Set it up";
+        $dataFooter->copyrightText = "Set it up";
+        $dataFooter->bgcolorBottom = "Set it up";
+        $dataFooter->bgColour = "Set it up";
+        } else {
+
         $dataHeader=ViewElement::where('elementName', 'header')->first();
         $dataHeader->companyName = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'companyName')->first()->propertyValue;
         $dataHeader->companyFeatures = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'companyFeatures')->first()->propertyValue;
@@ -43,6 +71,7 @@ class CustomerController extends Controller
         $dataFooter->copyrightText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'copyrightText')->first()->propertyValue;
         $dataFooter->bgcolorBottom = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgcolorBottom')->first()->propertyValue;
         $dataFooter->bgColour = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgColor')->first()->propertyValue;
+    }
 
         $allProjects = Project::paginate(6);
 
@@ -96,9 +125,15 @@ public function getEmailMess() {
     }
 
     public function getPropertyValue($request) {
+        if (ViewElement::where('elementName','settings')->first()) {
         $viewElem = ViewElement::where('elementName','settings')->first();
 
         $projectValue = VEproperty::where('element_id', $viewElem->id)->where('propertyName', $request)->first()->propertyValue;
+        } else {
+           
+            $projectValue = "Set it up, please. ";
+
+        }
         return $projectValue;
     }
 
@@ -108,9 +143,9 @@ public function getEmailMess() {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function install()
     {
-        //
+        return view('pages.install');
     }
 
     /**
