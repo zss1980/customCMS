@@ -94,8 +94,8 @@ class CustomerController extends Controller
     $data = $request->only('name', 'email', 'phone');
     $data['messageLines'] = explode("\n", $request->get('message'));
     $data['emailTo'] = $emailTo;
-    $data['website'] = getPropertyValue('projectName');
-            
+    $data['website'] = $this->getPropertyValue('projectName');
+
 
      Mail::send('mail.email', $data, function ($message) use ($data) {
       $message->subject('request an appointment from '.$data['website'].' by: '.$data['name'])
