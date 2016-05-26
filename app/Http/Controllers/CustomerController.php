@@ -93,10 +93,11 @@ class CustomerController extends Controller
     
     $data = $request->only('name', 'email', 'phone');
     $data['messageLines'] = explode("\n", $request->get('message'));
-    $data['emailTo'] = $emailTo;        
+    $data['emailTo'] = $emailTo;
+    $data['website'] = getPropertyValue('projectName');        
 
      Mail::send('mail.email', $data, function ($message) use ($data) {
-      $message->subject('request an appointment from the web-site by: '.$data['name'])
+      $message->subject('request an appointment from '.$data['website'].' by: '.$data['name'])
               ->to($data['emailTo'])
               ->from($data['email'], $data['name'])
               ->replyTo($data['email']);
