@@ -22,46 +22,39 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        if (count(User::all())<2) {
-        $dataHeader = new ViewElement;
-        $dataHeader->companyName = "Set it up";
-        $dataHeader->companyFeatures = "Set it up";
-        $dataHeader->image = "Set it up";
-        $dataHeader->bgColour = "Set it up";
-
-        $dataAbout = new ViewElement;
-        $dataAbout->aboutInfoLeft = "Set it up";
-        $dataAbout->aboutInfoRight = "Set it up";
-        $dataAbout->downloadLink = "Set it up";
-        $dataAbout->downloadCaption = "Set it up";
-        $dataAbout->bgColour = "Set it up";
-
-        $dataFooter = new ViewElement;
-        $dataFooter->footerLeftText = "Set it up";
-        $dataFooter->footerRightText = "Set it up";
-        $dataFooter->footerCentreText = "Set it up";
-        $dataFooter->footerLeftCaption = "Set it up";
-         $dataFooter->footerRightCaption = "Set it up";
-        $dataFooter->footerCentreCaption = "Set it up";
-        $dataFooter->copyrightText = "Set it up";
-        $dataFooter->bgcolorBottom = "Set it up";
-        $dataFooter->bgColour = "Set it up";
+        if (!ViewElement::where('elementName', 'header')->first()) {
+            $dataHeader = new ViewElement;
+            $dataHeader->companyName = "Set it up";
+            $dataHeader->companyFeatures = "Set it up";
+            $dataHeader->image = "Set it up";
+            $dataHeader->bgColour = "Set it up";
         } else {
-
         $dataHeader=ViewElement::where('elementName', 'header')->first();
         $dataHeader->companyName = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'companyName')->first()->propertyValue;
         $dataHeader->companyFeatures = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'companyFeatures')->first()->propertyValue;
         $dataHeader->image = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'img')->first()->propertyValue;
         $dataHeader->bgColour = VEproperty::where('element_id', $dataHeader->id)->where('propertyName', 'bgColor')->first()->propertyValue;
+        }
 
-        $dataAbout=ViewElement::where('elementName', 'about')->first();
+        if (ViewElement::where('elementName', 'about')->first())
+        {
+            $dataAbout=ViewElement::where('elementName', 'about')->first();
         $dataAbout->aboutInfoLeft = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'aboutInfoLeft')->first()->propertyValue;
         $dataAbout->aboutInfoRight = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'aboutInfoRight')->first()->propertyValue;
         $dataAbout->downloadLink = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'downloadLink')->first()->propertyValue;
         $dataAbout->downloadCaption = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'downloadCaption')->first()->propertyValue;
         $dataAbout->bgColour = VEproperty::where('element_id', $dataAbout->id)->where('propertyName', 'bgColor')->first()->propertyValue;
+        } else {
+            $dataAbout = new ViewElement;
+            $dataAbout->aboutInfoLeft = "Set it up";
+            $dataAbout->aboutInfoRight = "Set it up";
+            $dataAbout->downloadLink = "Set it up";
+            $dataAbout->downloadCaption = "Set it up";
+            $dataAbout->bgColour = "Set it up";
+        }
 
-        $dataFooter=ViewElement::where('elementName', 'footer')->first();
+        if (ViewElement::where('elementName', 'footer')->first()) {
+            $dataFooter=ViewElement::where('elementName', 'footer')->first();
         $dataFooter->footerLeftText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerLeftText')->first()->propertyValue;
         $dataFooter->footerRightText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerRightText')->first()->propertyValue;
         $dataFooter->footerCentreText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'footerCentreText')->first()->propertyValue;
@@ -71,7 +64,21 @@ class CustomerController extends Controller
         $dataFooter->copyrightText = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'copyrightText')->first()->propertyValue;
         $dataFooter->bgcolorBottom = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgcolorBottom')->first()->propertyValue;
         $dataFooter->bgColour = VEproperty::where('element_id', $dataFooter->id)->where('propertyName', 'bgColor')->first()->propertyValue;
+    } else {
+        $dataFooter = new ViewElement;
+        $dataFooter->footerLeftText = "Set it up";
+        $dataFooter->footerRightText = "Set it up";
+        $dataFooter->footerCentreText = "Set it up";
+        $dataFooter->footerLeftCaption = "Set it up";
+         $dataFooter->footerRightCaption = "Set it up";
+        $dataFooter->footerCentreCaption = "Set it up";
+        $dataFooter->copyrightText = "Set it up";
+        $dataFooter->bgcolorBottom = "Set it up";
+        $dataFooter->bgColour = "Set it up";  
     }
+
+        
+
 
         $allProjects = Project::paginate(6);
 
