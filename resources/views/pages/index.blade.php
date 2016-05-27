@@ -164,7 +164,7 @@ Test
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; {{{$dataFooter->copyrightText}}}
+                        Copyright &copy; {!!$dataFooter->copyrightText!!}
                     </div>
                 </div>
             </div>
