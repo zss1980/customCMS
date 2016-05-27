@@ -87,7 +87,7 @@ footer .footer-below {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; @{{copyrightText}}
+                        Copyright &copy; @{{{copyrightText}}}
                     </div>
                 </div>
             </div>
