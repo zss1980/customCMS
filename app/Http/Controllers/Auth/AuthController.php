@@ -74,7 +74,7 @@ class AuthController extends Controller
 
     public function getRegister()
 {
-    if (count(User::all())>1) {
+    if (count(User::all())>0) {
         return redirect('login');
     } else {
         return $this->showRegistrationForm();
@@ -83,7 +83,7 @@ class AuthController extends Controller
 
 public function showRegistrationForm()
     {
-        if (count(User::all())>1) {
+        if (count(User::all())>0) {
             return redirect('login');
         } else {
         if (property_exists($this, 'registerView')) {
@@ -97,7 +97,7 @@ public function showRegistrationForm()
 
 public function register(Request $request)
 {
-     if (count(User::all())>1) {
+     if (count(User::all())>0) {
     
     } else {
         $validator = $this->validator($request->all());
