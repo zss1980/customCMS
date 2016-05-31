@@ -22,11 +22,15 @@ window.addEventListener('load', function () {
 ready: function(){
   this.getView();
   $(".collapse").on('show.bs.collapse', function(){
-    $('body').scrollTo('#map',{duration:'1000', offsetTop : '50'});
+        //alert('The collapsible content is now fully shown.');
+        $('body').scrollTo('#map',{duration:'3000', offsetTop : '10'});
+
     });
 
-  $(".collapse").on('click', function(){
-    $(".collapse").collapse('toggle');
+  $("#map").on('click', function(){
+        //alert('The collapsible content is now fully shown.');
+        $("#map").collapse('toggle');
+
     });
  
   $.fn.scrollTo = function( target, options, callback ){

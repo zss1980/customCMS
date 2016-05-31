@@ -161,7 +161,7 @@ Test
                 </div>
             </div>
         </div>
-        <div id="map" class="collapse">
+        <div id="map" class="collapse map">
                 <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
