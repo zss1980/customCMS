@@ -41,7 +41,9 @@ public function __construct()
 			return view ('pages.adminContacts');
     	} elseif ($secName=="settings") {
 			return view ('pages.adminSettings');
-    	} else {
+    	} elseif ($secName=="map") {
+            return view ('pages.adminMap');
+        } else {
     		$allUsers = User::all();
     	$count = count($allUsers);
     		return view ('pages.admin')->with('users', $count);
