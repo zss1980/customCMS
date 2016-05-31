@@ -148,6 +148,7 @@ Test
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerLeftCaption}}</h3>
                         <p>{!!$dataFooter->footerLeftText!!}</p>
+                        <a href="javascript:;" @click="mapSwitch()"><img src="../img/map.png" class="responsive"></a>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerCentreCaption}}</h3>
@@ -160,11 +161,20 @@ Test
                 </div>
             </div>
         </div>
+        <div class="container" v-show="mapOn" transition="expand">
+                <div class="row">
+                    <div class="col-lg-6">
+        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center={{$map->latitude}},{{$map->longtitude}}&zoom=$map->zoom&size=600x300&markers=color:blue%7Clabel:S%7C{{$map->latitude}},{{$map->longtitude}}&markers=size:tiny%7Ccolor:green&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8"></div><div class="col-lg-6">
+        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/streetview?size=600x300&location={{$map->latitude}},{{$map->longtitude}}&heading={{$map->heading}}&pitch={{$map->pitch}}&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8">
+        </div>
+        </div>
+        </div>
+
         <div class="footer-below" style="background: #{{$dataFooter->bgcolorBottom}};">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; {!!$dataFooter->copyrightText!!}
+                        Copyright &copy; {!!$dataFooter->copyrightText!!}<br> <div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
                     </div>
                 </div>
             </div>

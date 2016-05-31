@@ -15,6 +15,7 @@ window.addEventListener('load', function () {
       { text: 'kitchen', value: 'kitchen' },
       { text: 'basement', value: 'basement' }
     ],
+    mapOn: false,
     
   },
 
@@ -30,6 +31,13 @@ events: {
   },
 
   methods: {
+    mapSwitch: function(){
+      if(this.mapOn) {
+        this.mapOn = false;
+      } else {
+        this.mapOn = true;
+      }
+    },
     
     getView: function () {
       this.$http.get('/getView', {viewName: 'projview'}).then(function(response)

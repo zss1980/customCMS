@@ -64,6 +64,7 @@
             <li class="{{ Request::path() ==  'admin/pview' ? 'active' : ''}}"><a href="{{ url('admin/pview') }}">Project Template</a></li>
             <li class="{{ Request::path() ==  'admin/contacts' ? 'active' : ''}}"><a href="{{ url('admin/contacts') }}">Contacts</a></li>
             <li class="{{ Request::path() ==  'admin/settings' ? 'active' : ''}}"><a href="{{ url('admin/settings') }}">Settings</a></li>
+            <li class="{{ Request::path() ==  'admin/map' ? 'active' : ''}}"><a href="{{ url('admin/map') }}">Map</a></li>
             <li class="{{ Request::path() ==  '/auth/logout' ? 'active' : ''}}"><a href="{{ url('/auth/logout') }}" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
           </ul>
           
@@ -83,13 +84,15 @@
             <li class="{{ Request::path() ==  'admin/footer' ? 'active' : ''}}"><a href="{{ url('admin/footer') }}">Footer</a></li>
             <li class="{{ Request::path() ==  'admin/pview' ? 'active' : ''}}"><a href="{{ url('admin/pview') }}">Project Template</a></li>
             <li class="{{ Request::path() ==  'admin/contacts' ? 'active' : ''}}"><a href="{{ url('admin/contacts') }}">Contacts</a></li>
+            <li class="{{ Request::path() ==  'admin/map' ? 'active' : ''}}"><a href="{{ url('admin/map') }}">Map</a></li>
           </ul>
           <hr>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
           <div id="app">
 
-          <div class="row placeholders">
+          <div class="row">
             @yield('sectionName')
           </div>
           <hr>
@@ -117,5 +120,7 @@
     @yield('scripts')
 
     @yield('modals')
+
+
   </body>
 </html>
