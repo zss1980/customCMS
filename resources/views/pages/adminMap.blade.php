@@ -32,7 +32,7 @@
 <LABEL>Set your location on the map: </LABEL><input id= "address" class="form-control" v-model="setLocation">
 
 <input type="button" class="btn btn-info" id="submit" type="button" value="Set location" @click="geocodeAddress(map, panorama)">
-<pre>@{{$data|json}}</pre>
+
 
     
 @stop
