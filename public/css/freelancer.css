@@ -461,7 +461,7 @@ footer .footer-below {
 /* always present */
 .expand-transition {
   transition: all .3s ease;
-  height: 300px;
+  height: auto;
   padding: 10px;
   background-color: #eee;
   overflow: hidden;

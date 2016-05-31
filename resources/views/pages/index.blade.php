@@ -148,7 +148,7 @@ Test
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerLeftCaption}}</h3>
                         <p>{!!$dataFooter->footerLeftText!!}</p>
-                        <a href="javascript:;" @click="mapSwitch()"><img src="../img/map.png" class="responsive"></a>
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#map"><img src="../img/map.png" class="responsive"></button>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerCentreCaption}}</h3>
@@ -161,13 +161,13 @@ Test
                 </div>
             </div>
         </div>
-        <div class="container" v-show="mapOn" transition="expand">
+        <div id="map" class="collapse">
+                <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center={{$map->latitude}},{{$map->longtitude}}&zoom=$map->zoom&size=600x300&markers=color:blue%7Clabel:S%7C{{$map->latitude}},{{$map->longtitude}}&markers=size:tiny%7Ccolor:green&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8"></div><div class="col-lg-6">
-        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/streetview?size=600x300&location={{$map->latitude}},{{$map->longtitude}}&heading={{$map->heading}}&pitch={{$map->pitch}}&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8">
-        </div>
-        </div>
+        <span><img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center={{$map->latitude}},{{$map->longtitude}}&zoom=$map->zoom&size=600x300&markers=color:blue%7Clabel:S%7C{{$map->latitude}},{{$map->longtitude}}&markers=size:tiny%7Ccolor:green&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8"></span></div><div class="col-lg-6"><span>
+        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/streetview?size=600x300&location={{$map->latitude}},{{$map->longtitude}}&heading={{$map->heading}}&pitch={{$map->pitch}}&key=AIzaSyBBwYO0mX3k4m9Y3vXAAgrYkZ0OPR3HJm8"></span></div></div></div>
+        
         </div>
 
         <div class="footer-below" style="background: #{{$dataFooter->bgcolorBottom}};">
