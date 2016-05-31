@@ -77,13 +77,50 @@ class CustomerController extends Controller
         $dataFooter->bgColour = "Set it up";  
     }
 
+    if (ViewElement::where('elementName', 'map')->first()) {
+        $dataMap = ViewElement::where('elementName', 'map')->first();
+        $dataMap->latitude = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'latitude')->first()->propertyValue;
+        $dataMap->longtitude = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'longtitude')->first()->propertyValue;
+        $dataMap->zoom = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'zoom')->first()->propertyValue;
+        $dataMap->pitch = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'pitch')->first()->propertyValue;
+        $dataMap->heading = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'heading')->first()->propertyValue;
+        
+        } else {
+        $dataMap = new ViewElement;
+        $dataMap->latitude = "Set it up";
+        $dataMap->longtitude = "Set it up";
+        $dataMap->zoom = "Set it up";
+        $dataMap->pitch = "Set it up";
+        $dataMap->heading = "Set it up";
+        }
+
         
 
 
         $allProjects = Project::paginate(6);
 
         return view('pages.index')->with('data', $dataHeader)->with('dataFooter', $dataFooter)
-                                    ->with('dataAbout', $dataAbout)->with('projects', $allProjects);
+                                    ->with('dataAbout', $dataAbout)->with('projects', $allProjects)->with('map', $dataMap);
+    }
+
+    public function map(){
+        if (ViewElement::where('elementName', 'map')->first()) {
+        $dataMap = ViewElement::where('elementName', 'map')->first();
+        $dataMap->latitude = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'latitude')->first()->propertyValue;
+        $dataMap->longtitude = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'longtitude')->first()->propertyValue;
+        $dataMap->zoom = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'zoom')->first()->propertyValue;
+        $dataMap->pitch = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'pitch')->first()->propertyValue;
+        $dataMap->heading = VEproperty::where('element_id', $dataMap->id)->where('propertyName', 'heading')->first()->propertyValue;
+        
+        } else {
+        $dataMap = new ViewElement;
+        $dataMap->latitude = "Set it up";
+        $dataMap->longtitude = "Set it up";
+        $dataMap->zoom = "Set it up";
+        $dataMap->pitch = "Set it up";
+        $dataMap->heading = "Set it up";
+        }
+        return view('pages.map')->with('map', $dataMap);
     }
 
     public function sendMail(Request $request)
