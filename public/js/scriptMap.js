@@ -95,7 +95,7 @@ events: {
           pitch: vm.pitch});
     //alert('Est contakt');
 
-  }else if (event.beta>6) {
+  }else if (event.beta>20) {
     if (vm.pitch>-80) {
       vm.pitch -= 1;
     //vm.alpha = event.alpha;
@@ -105,7 +105,7 @@ events: {
     //alert('Est contakt');
   }
 
-  }else if (event.beta<-6) {
+  }else if (event.beta<2) {
     if (vm.pitch<80) {
       vm.pitch += 1;
     //vm.alpha = event.alpha;
