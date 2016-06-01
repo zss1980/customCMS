@@ -79,7 +79,7 @@ events: {
   console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
   //vm.$emit('phone_moved', event);
   
-    if (event.alpha>1) {
+    if (event.beta>1) {
     vm.heading += 0.001;
     //vm.alpha = event.alpha;
     panorama.setPov({
