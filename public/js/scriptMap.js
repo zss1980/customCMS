@@ -8,10 +8,7 @@ window.addEventListener('load', function(){
   vm.$emit('google.maps:init');
     console.log('fired message');
 };
-window.addEventListener('deviceorientation', function(event) {
-  console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
-  vm.$emit('phone_moved', event.alpha);
-});
+
 
     var vm = new Vue({
   el: '#app',
@@ -51,6 +48,7 @@ ready: function(){
   console.log( "Load was performed." );
 });
   
+  
   //this.keepOld();
  
     
@@ -71,6 +69,10 @@ events: {
           pitch: this.pitch
         }
       });
+  window.addEventListener('deviceorientation', function(event) {
+  console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+  vm.$emit('phone_moved', event);
+});
 
   map.setStreetView(panorama);
   
@@ -91,10 +93,10 @@ events: {
 
   'phone_moved': function(event){
     if (event.alpha) {
-    this.heading += 0.1;
+    this.heading += 0.0001;
   }
   if (event.beta) {
-    this.pith +=0.1;
+    this.pitch +=0.0001;
   }
   vm.$emit('google.maps:init');
 
@@ -103,10 +105,10 @@ events: {
   },
 
 
-  /*created: {function(){
-  //vm.gmap = map;
-  //vm.gpanorama = panorama;
-  }*
+  /*created: function(){
+  vm.gmap = map;
+  vm.gpanorama = panorama;
+  
 },*/
 
   methods: {
