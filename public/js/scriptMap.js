@@ -1,23 +1,24 @@
 
 
 
-window.addEventListener('deviceorientation', function(event){
-vm.$emit('phone_moved', event);
-    console.log('fired phone_moved');
-});
+
 
 window.addEventListener('load', function(){
     window.initMap = function(){
   vm.$emit('google.maps:init');
     console.log('fired message');
 };
+window.addEventListener('deviceorientation', function(event) {
+  console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+  vm.$emit('phone_moved', event.alpha);
+});
 
     var vm = new Vue({
   el: '#app',
   data: {
     setLocation: "Winnipeg, MB, Canada",
     pitch: 28,
-  	heading: 54.9,
+    heading: 54.9,
     latitude: 49.8902011,
     longtitude:-97.1319283,
     zoom: 14,
@@ -52,7 +53,7 @@ ready: function(){
   
   //this.keepOld();
  
-  	
+    
   },
 
 events: {
@@ -101,11 +102,12 @@ events: {
     
   },
 
-  created: function(){
+
+  /*created: {function(){
   //vm.gmap = map;
   //vm.gpanorama = panorama;
-  }
-},
+  }*
+},*/
 
   methods: {
 
@@ -220,7 +222,7 @@ events: {
     },
 
     
-	},
+  },
   
 })
 })
