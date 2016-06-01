@@ -79,14 +79,15 @@ events: {
   console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
   //vm.$emit('phone_moved', event);
   
-    vm.heading += 0.0001;
-    vm.alpha = event.alpha;
+    if (event.alpha>0.1) {
+    vm.heading += 0.001;
+    //vm.alpha = event.alpha;
     panorama.setPov({
           heading: this.heading,
           pitch: this.pitch});
     alert('Est contakt');
 
-  
+  }
 });
 
   map.setStreetView(panorama);
