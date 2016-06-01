@@ -105,7 +105,7 @@ events: {
     //alert('Est contakt');
   }
 
-  }else if (event.beta<2) {
+  }else if (event.beta<2 && event.beta>0) {
     if (vm.pitch<80) {
       vm.pitch += 1;
     //vm.alpha = event.alpha;
