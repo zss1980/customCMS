@@ -78,8 +78,7 @@ events: {
   window.addEventListener('deviceorientation', function(event) {
   console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
   //vm.$emit('phone_moved', event);
-  vm.alphaShift = vm.alpha-event.alpha;
-    if (this.alphaShift>0.001) {
+  
     vm.heading += 0.0001;
     vm.alpha = event.alpha;
     panorama.setPov({
@@ -87,7 +86,7 @@ events: {
           pitch: this.pitch});
     alert('Est contakt');
 
-  }
+  
 });
 
   map.setStreetView(panorama);
