@@ -9,11 +9,7 @@ Test
    
    @section('customScripts')
 <script src="../js/scriptIndex.js"></script>
-<script>
-if (window.DeviceOrientationEvent) {
- alert("DeviceOrientation is supported");
-}
-</script>
+
 @stop     
     
 
