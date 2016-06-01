@@ -19,6 +19,12 @@ window.addEventListener('load', function(){
     latitude: 49.8902011,
     longtitude:-97.1319283,
     zoom: 14,
+    alpha: 0,
+    beta: 0,
+    gamma:0,
+    alphaShift: 0,
+    betaShift: 0,
+    gammaShift: 0,
 
     oldSetLocation: -1,
     oldPitch: -1,
@@ -92,14 +98,17 @@ events: {
   }, 
 
   'phone_moved': function(event){
-    if (event.alpha) {
-    this.heading += 0.0001;
+    vm.alphaShift = vm.alpha-event.alpha;
+    if (this.alphaShift>1) {
+    vm.heading += 0.0001;
+    vm.alpha = event.alpha;
+    vm.$emit('google.maps:init');
   }
-  if (event.beta) {
-    this.pitch +=0.0001;
+  /*if (event.beta) {
+    vm.pitch +=0.0001;
   }
-  vm.$emit('google.maps:init');
-
+  
+*/
   }
     
   },
