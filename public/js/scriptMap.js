@@ -96,21 +96,24 @@ events: {
     //alert('Est contakt');
 
   }else if (event.beta>5) {
-    vm.pitch -= 1;
+    if (vm.pitch>-90) {
+      vm.pitch -= 1;
     //vm.alpha = event.alpha;
     panorama.setPov({
           heading: vm.heading,
           pitch: vm.pitch});
     //alert('Est contakt');
+  }
 
   }else if (event.beta<-5) {
-    vm.pitch += 1;
+    if (vm.pitch<90) {
+      vm.pitch += 1;
     //vm.alpha = event.alpha;
     panorama.setPov({
           heading: vm.heading,
           pitch: vm.pitch});
     //alert('Est contakt');
-
+    }
   }
 });
 
