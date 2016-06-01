@@ -87,7 +87,7 @@ events: {
           pitch: vm.pitch});
     //alert('Est contakt');
 
-  }else if (event.gamma<3) {
+  }else if (event.gamma<-3) {
     vm.heading -= 1;
     //vm.alpha = event.alpha;
     panorama.setPov({
