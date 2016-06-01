@@ -1,6 +1,10 @@
 
 
 
+window.addEventListener('deviceorientation', function(event){
+vm.$emit('phone_moved', event);
+    console.log('fired phone_moved');
+});
 
 window.addEventListener('load', function(){
     window.initMap = function(){
@@ -82,6 +86,17 @@ events: {
     vm.latitude = panorama.getPosition().toJSON().lat;
     vm.longtitude = panorama.getPosition().toJSON().lng;
   });
+  }, 
+
+  'phone_moved': function(event){
+    if (event.alpha) {
+    this.heading += 0.1;
+  }
+  if (event.beta) {
+    this.pith +=0.1;
+  }
+  vm.$emit('google.maps:init');
+
   }
     
   },
@@ -89,6 +104,7 @@ events: {
   created: function(){
   //vm.gmap = map;
   //vm.gpanorama = panorama;
+  }
 },
 
   methods: {
