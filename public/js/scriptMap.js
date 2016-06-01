@@ -22,7 +22,7 @@ window.addEventListener('load', function(){
     alpha: 0,
     beta: 0,
     gamma:0,
-    alphaShift: 0,
+    alphaShift: 1,
     betaShift: 0,
     gammaShift: 0,
 
