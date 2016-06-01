@@ -148,7 +148,7 @@ Test
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerLeftCaption}}</h3>
                         <p>{!!$dataFooter->footerLeftText!!}</p>
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#map"><img src="../img/map.png" class="responsive"></button>
+                        <button id="btnmap" class="btn btn-link" data-toggle="collapse" data-target="#map"><img src="../img/map.png" class="responsive"></button>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>{{$dataFooter->footerCentreCaption}}</h3>
