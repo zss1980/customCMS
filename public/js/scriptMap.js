@@ -79,7 +79,7 @@ events: {
   console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
   //vm.$emit('phone_moved', event);
   
-    if (event.gamma>1) {
+    if (event.gamma>2) {
     vm.heading += 1;
     //vm.alpha = event.alpha;
     panorama.setPov({
@@ -87,8 +87,8 @@ events: {
           pitch: vm.pitch});
     //alert('Est contakt');
 
-  }else if (event.gamma<1) {
-    vm.heading += 1;
+  }else if (event.gamma<2) {
+    vm.heading -= 1;
     //vm.alpha = event.alpha;
     panorama.setPov({
           heading: vm.heading,
