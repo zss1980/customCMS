@@ -77,7 +77,16 @@ events: {
       });
   window.addEventListener('deviceorientation', function(event) {
   console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
-  vm.$emit('phone_moved', event);
+  //vm.$emit('phone_moved', event);
+  vm.alphaShift = vm.alpha-event.alpha;
+    if (this.alphaShift>1) {
+    vm.heading += 0.0001;
+    vm.alpha = event.alpha;
+    panorama.setPov({
+          heading: this.heading,
+          pitch: this.pitch});
+
+  }
 });
 
   map.setStreetView(panorama);
@@ -97,19 +106,16 @@ events: {
   });
   }, 
 
-  'phone_moved': function(event){
-    vm.alphaShift = vm.alpha-event.alpha;
-    if (this.alphaShift>1) {
-    vm.heading += 0.0001;
-    vm.alpha = event.alpha;
+ /* 'phone_moved': function(event){
+    
     vm.$emit('google.maps:init');
-  }
+  }*/
   /*if (event.beta) {
     vm.pitch +=0.0001;
   }
   
-*/
-  }
+
+  }*/
     
   },
 
