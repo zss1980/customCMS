@@ -84,9 +84,6 @@
                     <li class="page-scroll">
                         <a href="#contact">{{$prjValues->getPropertyValue('sectionContactName')}}</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="/admin/projects">Sign in</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -173,8 +173,8 @@ Test
         <div class="footer-below" style="background: #{{$dataFooter->bgcolorBottom}};">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; {!!$dataFooter->copyrightText!!}<br>
+                    <div class="col-lg-8">
+                        Copyright &copy; {!!$dataFooter->copyrightText!!}</div><div class="col-lg-3"><a href="http://webartisans.work/home">Developed by WebArtisans.work</a></div><div class="col-lg-1"><a href="/admin/projects">admin</a></div>
                     </div>
                 </div>
             </div>
