@@ -6,8 +6,8 @@ Test
 
 @section('header')
 <header style="background: #{{$data->bgColour}};">
-   
-   @section('customScripts')
+
+@section('customScripts')
 <script src="../js/scriptIndex.js"></script>
 
 @stop     
@@ -84,19 +84,19 @@ Test
                             <img src="{{$project->image}}" class="img-responsive img-centered" alt="">
                             <p>{{$project->description}}</p>
                             <ul class="list-inline item-details">
-                                <li>@{{dateCaption}}:
+                                <li>Date:
                                     <strong>{{$project->date}}
                                     </strong>
                                 </li>
-                                <li>@{{idCaption}}:
+                                <li>SKU#:
                                     <strong>{{$project->id}}
                                     </strong>
                                 </li>
-                                <li>@{{costCaption}}
+                                <li>Approximate cost:
                                     <strong> {{$project->cost}}
                                     </strong>
                                 </li>
-                                <li>@{{categoryCaption}}: <strong>{{$project->category}}
+                                <li>Category: <strong>{{$project->category}}
                                    </strong>
                                 </li>
                             </ul>
