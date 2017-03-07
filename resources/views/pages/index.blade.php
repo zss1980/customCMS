@@ -174,7 +174,7 @@ Test
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        Copyright &copy; {!!$dataFooter->copyrightText!!}</div><div class="col-lg-3"><a href="http://webartisans.work/home">Developed by WebArtisans.work</a></div><div class="col-lg-1"><a href="/admin/projects">admin</a></div>
+                        Copyright &copy; {!!$dataFooter->copyrightText!!}</div><div class="col-lg-3"><a href="https://webartisans.work/home">Developed by WebArtisans.work</a></div><div class="col-lg-1"><a href="/admin/projects">admin</a></div>
                     </div>
                 </div>
             </div>
